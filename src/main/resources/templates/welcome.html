@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html th:replace="layout/masterLayout :: layout(~{::main})" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+    <h1 class="text-center">FPL Winning Prize</h1>
+    <div class="container">
+        <form action="#" th:action="@{/save-info}" th:object="${info}" method="post">
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <label>Name</label>
+                    <input  type="text" class="form-control thead-dark" th:field="*{name}" placeholder="Name">
+                </div>
+                <div class="col-2">
+                    <label>Payment Type</label>
+                    <select class="form-control thead-dark" th:field="*{paymentType}">
+                        <option value="Select Payment Type" disabled="disabled" selected="selected">Select Payment Type</option>
+                        <option th:each="type : ${T(com.example.calculatingfunds.entity.PaymentType).values()}"
+                        th:value="${type}" th:text="${type}"></option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <label>Amount</label>
+                    <input type="text" class="form-control thead-dark" th:field="*{amount}" placeholder="Amount">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" class="btn btn-primary" value="Save">
+            </div>
+        </form>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header text-white">
+                        <h2>Kings Of FPL</h2>
+                    </div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Payment Type</th>
+                <th>Amount</th>
+                <th>Action</th>
+                <th>Editing</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="info : ${list}">
+                    <td th:text="${info.name}"></td>
+                    <td th:text="${info.paymentType}"></td>
+                    <td th:text="${'MMK'+' '+info.amount}"></td>
+                    <td>
+                        <a th:href="@{'/info/delete?id='+ ${info.id}}"
+                        class="btn btn-outline-danger">Delete</a>
+                            </td>
+                    <td><a th:href="@{'/edit/info?id='+${info.id}}"
+                           class="btn btn-outline-success">Edit</a></td>
+                             </tr>
+            <!-- Add more rows for additional data -->
+                        </tbody>
+            <tfoot>
+            <tr>
+<!--                <td colspan="3"></td>-->
+                <td>Total Amount:</td>
+                <td><a href="#" style="text-decoration: none !important;"><i class="fas fa-users"></i>
+                    <span class="h4" th:text="${infoSize}"></span></a></td>
+
+                <td th:text="${'MMK ' + total}"></td>
+                <td></td>
+            </tr>
+            </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</main>
+
+</body>
+</html>
