@@ -1,6 +1,6 @@
 package com.example.calculatingfunds.controller;
 
-import com.example.calculatingfunds.ds.InfoData;
+
 import com.example.calculatingfunds.entity.Info;
 import com.example.calculatingfunds.service.InfoService;
 import lombok.RequiredArgsConstructor;
@@ -9,8 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Set;
+
 @Controller
 @RequiredArgsConstructor
 public class InfoController {
